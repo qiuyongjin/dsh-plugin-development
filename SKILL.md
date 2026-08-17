@@ -5,38 +5,14 @@ description: Use when developing, extending, or debugging plugins in the deepsee
 
 # Developing a DeepSeek Harness plugin
 
-Everything in dsh is a Cordis plugin: the model adapter, the tool registry, the
-session log, and the agent loop are all plugins, so there is no privileged core
-to patch — you extend the product by mounting a plugin beside the others. This
-skill is self-contained: every rule it needs is inside this directory, in
-`SKILL.md` and the `references/` files it points to.
+Everything in dsh is a Cordis plugin — the model adapter, the tool registry, the
+session log, and the agent loop — so there is no privileged core to patch: you
+extend the product by mounting a plugin beside the others.
 
-> **Path convention.** This skill currently lives in the user-global
-> `~/.claude/skills` directory, outside the repository; nothing in it is tied
-> to a particular agent runtime. Repository paths appear in plain text
-> (never as links) relative to the **deepseek-harness repository root** — the
-> directory containing `AGENTS.md`, `packages/`, and `docs/` — so resolve them
-> against that root while working in the checkout. The only links in this
-> skill are internal.
-
-## What this skill contains
-
-- [references/plugin-templates.md](references/plugin-templates.md) — code
-  templates for every plugin shape (function plugin, service, tool, event
-  listener, session event, prompt section, cordis.yml rows, bundle/profile).
-- [references/extension-points.md](references/extension-points.md) — the
-  extension-point map, event domains and dispatch modes, capability seams,
-  naming rules, client-side extension points.
-- [references/package-checklist.md](references/package-checklist.md) — the
-  package.json / tsconfig / registration / README / invariant checklist.
-- [references/tool-contract.md](references/tool-contract.md) — the tool
-  `execute` contract, policy gates, and render-intent rules.
-- [references/testing-policy.md](references/testing-policy.md) — test tiers,
-  REAL-composition requirement, snapshot duty, defensive patterns.
-
-For details beyond these references, consult the repo-root files named in
-plain text throughout (e.g. `docs/architecture.md`, `packages/AGENTS.md`); the
-references are inlined from them, and the originals win when they disagree.
+Repo paths in this skill are relative to the **deepseek-harness repository
+root** (the directory containing `AGENTS.md`, `packages/`, and `docs/`). The
+references in `references/` are inlined from the repo-root docs named in plain
+text throughout; the originals win when they disagree.
 
 ## Step 1 — Choose the plugin shape
 
