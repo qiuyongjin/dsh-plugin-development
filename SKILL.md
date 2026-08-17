@@ -11,8 +11,9 @@ to patch — you extend the product by mounting a plugin beside the others. This
 skill is self-contained: every rule it needs is inside this directory, in
 `SKILL.md` and the `references/` files it points to.
 
-> **Path convention.** This skill lives in the user-global `~/.claude/skills`
-> directory, outside the repository. Repository paths appear in plain text
+> **Path convention.** This skill currently lives in the user-global
+> `~/.claude/skills` directory, outside the repository; nothing in it is tied
+> to a particular agent runtime. Repository paths appear in plain text
 > (never as links) relative to the **deepseek-harness repository root** — the
 > directory containing `AGENTS.md`, `packages/`, and `docs/` — so resolve them
 > against that root while working in the checkout. The only links in this

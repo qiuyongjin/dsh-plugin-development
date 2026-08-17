@@ -1,7 +1,8 @@
 # dsh-plugin-development
 
-一个自包含的 [Claude Code](https://claude.com/claude-code) 技能(Skill),用于在
-**deepseek-harness**(下文简称 dsh)仓库中开发、扩展和调试 Cordis 插件。
+一个自包含的插件开发技能(Skill),用于在 **deepseek-harness**(下文简称 dsh)仓库中
+开发、扩展和调试 Cordis 插件。技能本身不绑定任何特定 Agent:支持技能机制的 Agent
+(Claude Code、Cursor 等)均可加载,也可以当作独立的开发指南直接阅读。
 
 在 dsh 中,**一切皆是 Cordis 插件**:模型适配器、工具注册表、会话日志、agent
 loop 本身都是插件——不存在需要打补丁的"特权核心",扩展产品的方式就是在其旁挂载
@@ -10,7 +11,7 @@ loop 本身都是插件——不存在需要打补丁的"特权核心",扩展产
 
 ## 何时使用
 
-当任务涉及以下任何内容时,Claude 会自动加载本技能:
+当任务涉及以下任何内容时,Agent 会自动加载本技能(在支持技能机制的 Agent 中):
 
 - **插件开发**:新建或修改 Cordis 插件、bundle、profile 层、cordis.yml 配置行
 - **扩展点**:tool 注册(`ctx.tools` / `defineTool`)、service 与 `ctx.*` 键、
@@ -20,7 +21,7 @@ loop 本身都是插件——不存在需要打补丁的"特权核心",扩展产
 - **修改 agent loop** 或注册新的 session 事件之前——确保变更挂接到已文档化的
   扩展点上,而不是硬改核心
 
-也可以手动调用:输入 `/dsh-plugin-development`。
+也可以手动调用:在支持技能命令的 Agent 中输入 `/dsh-plugin-development`。
 
 ## 目录结构
 
@@ -51,14 +52,16 @@ dsh-plugin-development/
 
 ## 安装
 
-本技能放置在用户级技能目录,Claude Code 会自动发现:
+本技能不限定于任何特定 Agent。当前放置在用户级技能目录,遵循该约定的 Agent
+(如 Claude Code)会自动发现;也可以按你所用 Agent 的技能机制放置(例如项目内
+`.claude/skills/`、`.cursor/` 等):
 
 ```bash
-# 技能目录(本仓库即克隆/放置于此)
+# 当前放置位置(用户级技能目录)
 ~/.claude/skills/dsh-plugin-development/
 ```
 
-> **路径约定**:技能位于 `~/.claude/skills`(仓库之外),因此技能内提到的仓库路径
+> **路径约定**:技能当前位于 `~/.claude/skills`(仓库之外),因此技能内提到的仓库路径
 > 一律以纯文本(而非链接)书写,相对于 **deepseek-harness 仓库根目录**(含
 > `AGENTS.md`、`packages/`、`docs/` 的目录)。
 
